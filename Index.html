@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>🏁 ElectroRacer Underground</title>
+<style>
+:root{--bg:#f4f6fb;--fg:#17202e;--card:#fff;--mut:#5b6678;--acc:#2563eb;--bd:#d6dbe6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1521;--fg:#e8edf6;--card:#182133;--mut:#97a3b8;--acc:#6ea0ff;--bd:#2a3550}}
+:root[data-theme="dark"]{--bg:#0f1521;--fg:#e8edf6;--card:#182133;--mut:#97a3b8;--acc:#6ea0ff;--bd:#2a3550}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.4}
+.wrap{max-width:680px;margin:0 auto;padding:12px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px;margin-bottom:12px}
+h1{margin:0 0 6px;font-size:26px}h2{margin:0 0 8px;font-size:17px}
+p,li{color:var(--mut);font-size:14px;margin:4px 0}ul{padding-left:18px;margin:6px 0}
+input{width:100%;padding:11px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--fg);font-size:16px;box-sizing:border-box;margin:6px 0}
+button{font:inherit;font-weight:700;border:0;border-radius:10px;padding:11px 14px;background:var(--acc);color:#fff;cursor:pointer}
+button.alt{background:transparent;color:var(--acc);border:1px solid var(--acc)}
+.row{display:flex;gap:8px;flex-wrap:wrap}.row>*{flex:1}
+#gar{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+.gc{border:2px solid var(--bd);border-radius:10px;padding:8px;cursor:pointer}.gc.on{border-color:var(--acc)}
+.gc b{font-size:13px;display:block;margin-bottom:3px}.gc small{font-size:10px;color:var(--mut)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px}
+.bar{height:5px;background:var(--bd);border-radius:3px;margin:1px 0 3px}.bar i{display:block;height:100%;border-radius:3px;background:var(--acc)}
+#game{display:none}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-size:14px}
+.code{font-family:ui-monospace,monospace;font-size:20px;font-weight:700;letter-spacing:2px;color:var(--acc)}
+#qp{background:#0b1220;color:#e8edf6;border-radius:10px 10px 0 0;padding:8px 10px;min-height:64px;border:1px solid #243049;border-bottom:0}
+#qh{font-size:11px;letter-spacing:1px;color:#fbbf24;font-weight:700}#qq{font-size:15px;font-weight:700;margin:2px 0 6px}
+#qo3{display:flex;gap:6px}#qo3 span{flex:1;text-align:center;padding:5px 3px;border-radius:6px;font-size:13px;font-weight:700;color:#0b1220}
+#cv{width:100%;height:auto;display:block;background:#05070d;border-radius:0 0 10px 10px;touch-action:none}
+.pad{display:flex;gap:8px;margin-top:10px;user-select:none;-webkit-user-select:none}
+.pad button{background:var(--card);color:var(--fg);border:1px solid var(--bd);touch-action:none;font-size:24px;height:66px;flex:1}
+.pad .n{background:#f97316;color:#fff;border-color:#f97316;font-size:18px}
+.ov{position:fixed;inset:0;background:rgba(5,10,20,.78);display:none;align-items:center;justify-content:center;padding:16px;z-index:20}
+.ov .card{max-width:480px;width:100%;margin:0}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}td,th{padding:6px 4px;text-align:left;border-bottom:1px solid var(--bd)}
+.sw{display:flex;gap:6px;margin:4px 0}.sw i{width:28px;height:24px;border-radius:6px;border:3px solid transparent;cursor:pointer}.sw i.on{border-color:var(--fg)}
+.pad #bb,.pad #bd,.pad #bn{font-size:13px;padding:0}.pad .d{background:#7c3aed;color:#fff;border-color:#7c3aed}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="lobby">
+ <div class="scr" id="s-menu">
+  <div class="card"><h1>🏁 ElectroRacer Underground</h1>
+   <p>Campeonato de rua noturno em 4 fases para revisar <b>eletroquímica</b>. Acerte os portões, derrape, ganhe buffs e suba no pódio.</p></div>
+  <div class="card"><h2>Como você quer jogar?</h2>
+   <div class="row" style="flex-direction:column"><button id="m-c">👩‍🏫 Criar sala (professor)</button><button id="m-j">🎮 Entrar em uma sala (aluno)</button><button id="m-s" class="alt">🏎️ Treino solo com rivais</button></div></div>
+  <div class="card"><h2>Regras do campeonato</h2><ul>
+   <li>Aceleração automática. ◀ ▶ (ou A/D) guiam, ↓ freia, Espaço ou ↑ ativa o NOS. Evite roçar nos muros.</li>
+   <li>4 fases (Bairro, Centro, Porto e Autoestrada) com 4 portões cada. Passe pela pista A (esquerda), B (centro) ou C (direita) com a resposta certa.</li>
+   <li>Acertou: +100 pontos e um BUFF aleatório (turbo, grip+, escudo ou pontos em dobro). Errou: perde velocidade e recebe um DEBUFF (pneu furado, névoa, controles invertidos ou NOS vazando).</li>
+   <li>Drift: segure Z (ou o botão DRIFT) enquanto vira para derrapar. Quanto mais tempo e ângulo, maior o combo (até x5). Ao terminar, os pontos são somados (até 150 pts por fase), viram dinheiro e enchem o NOS. Bater no muro ou no trânsito durante o drift faz perder tudo.</li>
+   <li>Cada fase dá bônus de chegada (1º +150, 2º +100, 3º +70, 4º +40). A classificação geral soma as 4 fases e define o pódio.</li></ul></div>
+ </div>
+ <div class="scr" id="s-create" style="display:none"><div class="card"><h2>Criar sala</h2>
+  <p>Você será o professor: recebe um código e um QR code para a turma entrar e decide quando a corrida começa.</p>
+  <input id="nm1" placeholder="Seu nome" maxlength="14" autocomplete="off">
+  <div class="row"><button id="b1" class="alt">← Voltar</button><button id="bc">Criar sala</button></div><p id="msg1" style="color:#dc2626"></p></div></div>
+ <div class="scr" id="s-join" style="display:none"><div class="card"><h2>Entrar em uma sala</h2>
+  <p id="jh">Escaneie o QR code do professor com a câmera do celular ou digite o código.</p>
+  <input id="nm2" placeholder="Seu nome ou apelido" maxlength="14" autocomplete="off">
+  <input id="cd" placeholder="Código da sala (ex: k7m2)" maxlength="8" autocomplete="off">
+  <div class="row"><button id="b2" class="alt">← Voltar</button><button id="bj">Entrar</button></div><p id="msg2" style="color:#dc2626"></p></div></div>
+ <div class="scr" id="s-wait" style="display:none">
+  <button id="bw" class="alt" style="margin-bottom:10px">← Sair da sala</button>
+  <div class="card" id="wcard" style="text-align:center"><p>Código da sala</p><div class="code" id="wc" style="font-size:40px">----</div>
+   <canvas id="qr" width="240" height="240" style="background:#fff;border-radius:10px;max-width:100%"></canvas>
+   <p>Aponte a câmera do celular para entrar ou abra o link:</p><p id="wl" style="word-break:break-all;font-size:12px"></p><button id="cp" class="alt">Copiar link</button></div>
+  <div class="card" id="pcard"><h2>Jogadores na sala (<span id="wn">1</span>)</h2><div id="wp"></div></div>
+  <div class="card"><h2>Garagem</h2><div id="gar"></div>
+   <div class="row" style="align-items:center"><canvas id="pv" width="260" height="110" style="max-width:100%;flex:0 0 auto"></canvas><div style="flex:1;min-width:150px"><small>Pintura</small><div class="sw" id="sc"></div><small>Neon</small><div class="sw" id="su"></div><label style="font-size:13px"><input type="checkbox" id="sw1" style="width:auto"> Aerofólio</label></div></div></div>
+  <div class="card"><p id="wh"></p><button id="go" style="width:100%">🏁 Iniciar corrida</button></div>
+ </div>
+</div>
+<div id="game">
+ <div class="top"><button id="bk" class="alt" style="padding:4px 12px" title="Menu da corrida">←</button><div>Sala <span class="code" id="rc">----</span></div><div id="st" style="color:var(--mut)"></div><button id="mu" class="alt" style="padding:4px 10px">🔊</button></div>
+ <div id="qp"><div id="qh"></div><div id="qq"></div><div id="qo3"><span></span><span></span><span></span></div></div>
+ <canvas id="cv" width="640" height="360"></canvas>
+ <div class="pad"><button id="bl">◀</button><button id="br">▶</button><button id="bb">FREIO</button><button id="bd" class="d">DRIFT</button><button id="bn" class="n">NOS</button></div>
+ <p style="text-align:center">Compartilhe o código da sala para a turma competir junto.</p>
+</div>
+</div>
+<div class="ov" id="res"><div class="card"><h2 id="rt">Resultados</h2><table id="tb"></table><div id="up" class="row"></div><p id="rw" style="display:none;color:var(--mut)">Aguardando o professor iniciar a próxima fase…</p><div class="row"><button id="rn">Próxima fase ▶</button><button id="ra" class="alt">Recomeçar campeonato</button><button id="rx" class="alt">🚪 Sair da sala</button></div></div></div>
+
+<div class="ov" id="pz"><div class="card"><h2>Menu da corrida</h2><p id="pzt"></p><div class="row" style="flex-direction:column"><button id="pc">▶ Continuar</button><button id="pd" class="alt">🏳️ Desistir desta fase</button><button id="px" class="alt">🚪 Sair da sala</button></div></div></div>
+<script>/* qrcode-generator 1.4.4 (MIT) */
+var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],f={},c=function(t,r){o=function(t){for(var r=new Array(t),e=0;e<t;e+=1){r[e]=new Array(t);for(var n=0;n<t;n+=1)r[e][n]=null}return r}(i=4*e+17),l(0,0),l(i-7,0),l(0,i-7),s(),h(),d(t,r),e>=7&&v(t),null==a&&(a=p(e,n,u)),w(a,r)},l=function(t,r){for(var e=-1;e<=7;e+=1)if(!(t+e<=-1||i<=t+e))for(var n=-1;n<=7;n+=1)r+n<=-1||i<=r+n||(o[t+e][r+n]=0<=e&&e<=6&&(0==n||6==n)||0<=n&&n<=6&&(0==e||6==e)||2<=e&&e<=4&&2<=n&&n<=4)},h=function(){for(var t=8;t<i-8;t+=1)null==o[t][6]&&(o[t][6]=t%2==0);for(var r=8;r<i-8;r+=1)null==o[6][r]&&(o[6][r]=r%2==0)},s=function(){for(var t=B.getPatternPosition(e),r=0;r<t.length;r+=1)for(var n=0;n<t.length;n+=1){var i=t[r],a=t[n];if(null==o[i][a])for(var u=-2;u<=2;u+=1)for(var f=-2;f<=2;f+=1)o[i+u][a+f]=-2==u||2==u||-2==f||2==f||0==u&&0==f}},v=function(t){for(var r=B.getBCHTypeNumber(e),n=0;n<18;n+=1){var a=!t&&1==(r>>n&1);o[Math.floor(n/3)][n%3+i-8-3]=a}for(n=0;n<18;n+=1){a=!t&&1==(r>>n&1);o[n%3+i-8-3][Math.floor(n/3)]=a}},d=function(t,r){for(var e=n<<3|r,a=B.getBCHTypeInfo(e),u=0;u<15;u+=1){var f=!t&&1==(a>>u&1);u<6?o[u][8]=f:u<8?o[u+1][8]=f:o[i-15+u][8]=f}for(u=0;u<15;u+=1){f=!t&&1==(a>>u&1);u<8?o[8][i-u-1]=f:u<9?o[8][15-u-1+1]=f:o[8][15-u-1]=f}o[i-8][8]=!t},w=function(t,r){for(var e=-1,n=i-1,a=7,u=0,f=B.getMaskFunction(r),c=i-1;c>0;c-=2)for(6==c&&(c-=1);;){for(var g=0;g<2;g+=1)if(null==o[n][c-g]){var l=!1;u<t.length&&(l=1==(t[u]>>>a&1)),f(n,c-g)&&(l=!l),o[n][c-g]=l,-1==(a-=1)&&(u+=1,a=7)}if((n+=e)<0||i<=n){n-=e,e=-e;break}}},p=function(t,r,e){for(var n=A.getRSBlocks(t,r),o=b(),i=0;i<e.length;i+=1){var a=e[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var u=0;for(i=0;i<n.length;i+=1)u+=n[i].dataCount;if(o.getLengthInBits()>8*u)throw"code length overflow. ("+o.getLengthInBits()+">"+8*u+")";for(o.getLengthInBits()+4<=8*u&&o.put(0,4);o.getLengthInBits()%8!=0;)o.putBit(!1);for(;!(o.getLengthInBits()>=8*u||(o.put(236,8),o.getLengthInBits()>=8*u));)o.put(17,8);return function(t,r){for(var e=0,n=0,o=0,i=new Array(r.length),a=new Array(r.length),u=0;u<r.length;u+=1){var f=r[u].dataCount,c=r[u].totalCount-f;n=Math.max(n,f),o=Math.max(o,c),i[u]=new Array(f);for(var g=0;g<i[u].length;g+=1)i[u][g]=255&t.getBuffer()[g+e];e+=f;var l=B.getErrorCorrectPolynomial(c),h=k(i[u],l.getLength()-1).mod(l);for(a[u]=new Array(l.getLength()-1),g=0;g<a[u].length;g+=1){var s=g+h.getLength()-a[u].length;a[u][g]=s>=0?h.getAt(s):0}}var v=0;for(g=0;g<r.length;g+=1)v+=r[g].totalCount;var d=new Array(v),w=0;for(g=0;g<n;g+=1)for(u=0;u<r.length;u+=1)g<i[u].length&&(d[w]=i[u][g],w+=1);for(g=0;g<o;g+=1)for(u=0;u<r.length;u+=1)g<a[u].length&&(d[w]=a[u][g],w+=1);return d}(o,n)};f.addData=function(t,r){var e=null;switch(r=r||"Byte"){case"Numeric":e=M(t);break;case"Alphanumeric":e=x(t);break;case"Byte":e=m(t);break;case"Kanji":e=L(t);break;default:throw"mode:"+r}u.push(e),a=null},f.isDark=function(t,r){if(t<0||i<=t||r<0||i<=r)throw t+","+r;return o[t][r]},f.getModuleCount=function(){return i},f.make=function(){if(e<1){for(var t=1;t<40;t++){for(var r=A.getRSBlocks(t,n),o=b(),i=0;i<u.length;i++){var a=u[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var g=0;for(i=0;i<r.length;i++)g+=r[i].dataCount;if(o.getLengthInBits()<=8*g)break}e=t}c(!1,function(){for(var t=0,r=0,e=0;e<8;e+=1){c(!0,e);var n=B.getLostPoint(f);(0==e||t>n)&&(t=n,r=e)}return r}())},f.createTableTag=function(t,r){t=t||2;var e="";e+='<table style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: "+(r=void 0===r?4*t:r)+"px;",e+='">',e+="<tbody>";for(var n=0;n<f.getModuleCount();n+=1){e+="<tr>";for(var o=0;o<f.getModuleCount();o+=1)e+='<td style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: 0px;",e+=" width: "+t+"px;",e+=" height: "+t+"px;",e+=" background-color: ",e+=f.isDark(n,o)?"#000000":"#ffffff",e+=";",e+='"/>';e+="</tr>"}return e+="</tbody>",e+="</table>"},f.createSvgTag=function(t,r,e,n){var o={};"object"==typeof arguments[0]&&(t=(o=arguments[0]).cellSize,r=o.margin,e=o.alt,n=o.title),t=t||2,r=void 0===r?4*t:r,(e="string"==typeof e?{text:e}:e||{}).text=e.text||null,e.id=e.text?e.id||"qrcode-description":null,(n="string"==typeof n?{text:n}:n||{}).text
